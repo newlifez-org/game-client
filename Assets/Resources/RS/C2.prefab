@@ -2865,6 +2865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6241913146507180071}
+  - component: {fileID: -2286356271193397953}
   m_Layer: 5
   m_Name: C2
   m_TagString: Player
@@ -2895,6 +2896,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2286356271193397953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761145776901382813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380e9013ecc6a347b566951c2c1ec59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModelID: {fileID: 9000000, guid: cdd490a8756d3094096906e1d42661e0, type: 3}
 --- !u!1 &6867441030788825623
 GameObject:
   m_ObjectHideFlags: 0
