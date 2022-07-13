@@ -1792,7 +1792,7 @@ MonoBehaviour:
   viewPos: {fileID: 1418236364}
   character: {fileID: 5840682797669869308, guid: 7ef7885691b9c8d4ba9cd59b1e1228d5, type: 3}
   startID: 0
-  endID: 6
+  endID: 9
   index: 0
   NextCharacterButton: {fileID: 106594740}
   PreviousCharacterButton: {fileID: 1554383618}
