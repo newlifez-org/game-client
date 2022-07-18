@@ -16,6 +16,7 @@ namespace NewLifeZ
         public static class PhotonRoom
         {
             public const string MAIN_ROOM = "NewLifeZ_Room";
+            public const string GOLD_MINE = "GoldMine_Room";
         }
 
         public static class PlayerPref

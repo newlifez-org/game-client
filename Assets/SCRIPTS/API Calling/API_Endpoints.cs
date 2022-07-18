@@ -8,7 +8,7 @@ namespace NewLifeZ.API
     {
         private const string BASE_URL = "https://dev.api.newlifez.io/v1.0/api";
 
-        public const string LOGIN = BASE_URL + "/auth/sign-in";
+        public const string LOGIN = "https://dev.api.newlifez.io/v1.0/api/auth/sign-in";
         public const string SIGNUP = BASE_URL + "/auth/signup";
     }
 

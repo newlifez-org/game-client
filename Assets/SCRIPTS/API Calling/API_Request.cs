@@ -37,13 +37,18 @@ namespace NewLifeZ.API
             }
         }
 
-        public static IEnumerator PostRequest(string endpoint, WWWForm form, string bearerToken = null, Action<string> OnSuccess = null, Action<string> OnFailed = null)
+        public static IEnumerator PostRequest(string endpoint, string body, string bearerToken = null, Action<string> OnSuccess = null, Action<string> OnFailed = null)
         {
             Debug.Log($"token: {bearerToken}");
-            using (UnityWebRequest www = UnityWebRequest.Post(endpoint, form))
+            UnityWebRequest www;
+            using (www = UnityWebRequest.Post(endpoint, body))
             {
+                www.SetRequestHeader("Accept", "application/json");
+                www.SetRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                www.uploadHandler = new UploadHandlerRaw(string.IsNullOrEmpty(body) ? null : Encoding.UTF8.GetBytes(body));
                 if (bearerToken != null)
                 {
+
                     www.SetRequestHeader("Authorization", "Bearer " + bearerToken);
                 }
                 yield return www.SendWebRequest();
@@ -60,4 +65,3 @@ namespace NewLifeZ.API
         }
     }
 }
-

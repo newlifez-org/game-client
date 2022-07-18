@@ -52,11 +52,13 @@ namespace NewLifeZ.API
 
         public void Login(string username, string password)
         {
-            WWWForm form = new WWWForm();
-            form.AddField("username", username);
-            form.AddField("password", password);
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.username = username;
+            loginRequest.password = password;
+            string loginRequestString = JsonUtility.ToJson(loginRequest);
+            Debug.Log(loginRequestString);
             _UIController.Loading(true);
-            StartCoroutine(API_Request.PostRequest(API_Endpoints.LOGIN, form, null, handleLoginSuccess, handleLoginFailed));
+            StartCoroutine(API_Request.PostRequest(API_Endpoints.LOGIN, loginRequestString, null, handleLoginSuccess, handleLoginFailed));
         }
     }
 }
@@ -66,5 +68,12 @@ public class LoginResponse
 {
     public string name;
     public string token;
+}
+
+[Serializable]
+public class LoginRequest
+{
+    public string username;
+    public string password;
 }
 
