@@ -16,7 +16,8 @@ public class GameDataManager : Singleton<GameDataManager>
     public HairPart Hair;
     public PantsPart Pants;
     public ShirtPart Shirt;
-    public ShortsPart Shorts;
+    public ShoesPart Shoes;
+    public GlassPart Glasses;
 
     [Serializable]
     public class EyePart
@@ -68,7 +69,14 @@ public class GameDataManager : Singleton<GameDataManager>
     }
 
     [Serializable]
-    public class ShortsPart
+    public class ShoesPart
+    {
+        public string Name;
+        public string Value;
+    }
+
+    [Serializable]
+    public class GlassPart
     {
         public string Name;
         public string Value;
