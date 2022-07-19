@@ -93,7 +93,7 @@ namespace NewLifeZ.API
         {
             Debug.Log("data:" + API_Static.m_CharacterMetaData.Count);
             CharacterMetaData data = API_Static.m_CharacterMetaData[index];
-            Debug.Log("data:"+data.image);
+            Debug.Log("data:"+ data.image);
             GameDataManager.Instance.Description = data.description;
             GameDataManager.Instance.ExternalURL = data.external_url;
             GameDataManager.Instance.AvatarURL = data.image;
@@ -115,12 +115,12 @@ namespace NewLifeZ.API
             GameDataManager.Instance.EyeSlash.Value = data.attributes[3].value;
 
 
-            GameDataManager.Instance.Hair.Name = data.attributes[4].name;
-            GameDataManager.Instance.Hair.Value = data.attributes[4].value;
+            GameDataManager.Instance.Pants.Name = data.attributes[4].name;
+            GameDataManager.Instance.Pants.Value = data.attributes[4].value;
 
 
-            GameDataManager.Instance.Pants.Name = data.attributes[5].name;
-            GameDataManager.Instance.Pants.Value = data.attributes[5].value;
+            GameDataManager.Instance.Hair.Name = data.attributes[5].name;
+            GameDataManager.Instance.Hair.Value = data.attributes[5].value;
 
 
             GameDataManager.Instance.Shirt.Name = data.attributes[6].name;
@@ -129,6 +129,9 @@ namespace NewLifeZ.API
 
             GameDataManager.Instance.Shoes.Name = data.attributes[7].name;
             GameDataManager.Instance.Shoes.Value = data.attributes[7].value;
+
+            GameDataManager.Instance.Glasses.Name = data.attributes[8].name;
+            GameDataManager.Instance.Glasses.Value = data.attributes[8].name;
         }
 
         private void HandleGetMetaDataFail(string msg)
