@@ -42,9 +42,7 @@ namespace NewLifeZ.MainMenu
         void Start()
         {
             LoginButton.onClick.AddListener(() => _CallingAPI.Login(usernameInputField.text, passwordInputField.text));
-
             EnterWorld_Button.onClick.AddListener(EnterWorld);
-
             Version_txt.text = Application.version;
         }
 
