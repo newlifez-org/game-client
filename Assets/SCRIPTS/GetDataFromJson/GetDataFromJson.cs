@@ -11,7 +11,7 @@ namespace NewLifeZ
         // Start is called before the first frame update
         void Start()
         {
-            API_CallingAPI.Instance.GetCharacterData(1);
+            API_CallingAPI.Instance.GetCharacterData(0);
             ActiveBodyPart();
 
         }
@@ -26,7 +26,6 @@ namespace NewLifeZ
             for (int i = 0; i < this.transform.childCount; i++) {
 
                 GameObject go = this.transform.GetChild(i).gameObject;
-              
                 if (go.name == GameDataManager.Instance.Eye.Name)
                 {
                     go.SetActive(true);
