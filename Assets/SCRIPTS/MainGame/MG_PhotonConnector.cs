@@ -43,7 +43,7 @@ namespace NewLifeZ.MainGame
                 LocalInstancePLayer = PhotonNetwork.Instantiate(Path.Combine("RS", PlayerPrefab.name), MG_SpawnPlayerPosition.Instance.transform.position, Quaternion.identity);
                 LoadingPanel.SetActive(false);
                 SecondCamera.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
                 //FS_NamePickUp.instance.StartChat();
             }
             else

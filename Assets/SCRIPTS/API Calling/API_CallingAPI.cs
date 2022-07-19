@@ -56,16 +56,25 @@ namespace NewLifeZ.API
 
         private void HandleGetMetaDataSuccess(string dataString)
         {
+            StartCoroutine(LoadWalletData(dataString));
+        }
+
+        IEnumerator LoadWalletData(string dataString)
+        {
             m_WalletData = JsonUtility.FromJson<WalletData>(dataString);
 
             //Get MetaData
             for (int i = 0; i < m_WalletData.list_tokens.Count; i++)
             {
-                StartCoroutine(GetMetaData(m_WalletData.list_tokens[i].token_uri));
-            }   
+                string url = m_WalletData.list_tokens[i].token_uri;
+                Debug.Log("ABAC:" + url);
+                yield return StartCoroutine(GetMetaData(url));
+            }
+            Debug.Log("Loaded data");
         }
+ 
 
-        private IEnumerator GetMetaData(string uri)
+    private IEnumerator GetMetaData(string uri)
         {
 
             using (UnityWebRequest www = UnityWebRequest.Get(uri))
@@ -81,9 +90,9 @@ namespace NewLifeZ.API
                 {
                     var dataString = Encoding.UTF8.GetString(www.downloadHandler.data);
 
-                    CharacterMetaData  a = JsonUtility.FromJson<CharacterMetaData>(dataString);
+                    CharacterMetaData a = JsonUtility.FromJson<CharacterMetaData>(dataString);
                     API_Static.m_CharacterMetaData.Add(a);
-
+                    Debug.Log(dataString);
                     _UIController.OpenMainMenu();
                 }
             }
@@ -93,45 +102,71 @@ namespace NewLifeZ.API
         {
             Debug.Log("data:" + API_Static.m_CharacterMetaData.Count);
             CharacterMetaData data = API_Static.m_CharacterMetaData[index];
-            Debug.Log("data:"+ data.image);
+            Debug.Log("attributes:" + data.attributes.Count);
             GameDataManager.Instance.Description = data.description;
             GameDataManager.Instance.ExternalURL = data.external_url;
             GameDataManager.Instance.AvatarURL = data.image;
             GameDataManager.Instance.CharacterName = data.name;
 
-            GameDataManager.Instance.Eye.Name = data.attributes[0].name;
-            GameDataManager.Instance.Eye.Value = data.attributes[0].value;
+            for (int i = 0; i < data.attributes.Count; i++)
+            {
+                Debug.Log("part:" + data.attributes[i].type+":"+ data.attributes[i].name);
+                if (data.attributes[i].type == "Eye")
+                {
+                    GameDataManager.Instance.Eye.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Eye.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Body")
+                {
+                    GameDataManager.Instance.Body.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Body.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "EyeBrow")
+                {
+                    GameDataManager.Instance.EyeBrow.Name = data.attributes[i].name;
+                    GameDataManager.Instance.EyeBrow.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Eyelash")
+                {
+                    GameDataManager.Instance.EyeSlash.Name = data.attributes[i].name;
+                    GameDataManager.Instance.EyeSlash.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Hair")
+                {
+                    GameDataManager.Instance.Hair.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Hair.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Pants")
+                {
+                    GameDataManager.Instance.Pants.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Pants.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Shirt")
+                {
+                    GameDataManager.Instance.Shirt.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Shirt.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Shoes")
+                {
+                    GameDataManager.Instance.Shoes.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Shoes.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
+                else if (data.attributes[i].type == "Glass")
+                {
+                    GameDataManager.Instance.Glasses.Name = data.attributes[i].name;
+                    GameDataManager.Instance.Glasses.Value = data.attributes[i].value;
+                    Debug.Log("Eye:" + data.attributes[i].name);
+                }
 
-
-            GameDataManager.Instance.Body.Name = data.attributes[1].name;
-            GameDataManager.Instance.Body.Value = data.attributes[1].value;
-
-
-            GameDataManager.Instance.EyeBrow.Name = data.attributes[2].name;
-            GameDataManager.Instance.EyeBrow.Value = data.attributes[2].value;
-
-
-            GameDataManager.Instance.EyeSlash.Name = data.attributes[3].name;
-            GameDataManager.Instance.EyeSlash.Value = data.attributes[3].value;
-
-
-            GameDataManager.Instance.Pants.Name = data.attributes[4].name;
-            GameDataManager.Instance.Pants.Value = data.attributes[4].value;
-
-
-            GameDataManager.Instance.Hair.Name = data.attributes[5].name;
-            GameDataManager.Instance.Hair.Value = data.attributes[5].value;
-
-
-            GameDataManager.Instance.Shirt.Name = data.attributes[6].name;
-            GameDataManager.Instance.Shirt.Value = data.attributes[6].value;
-
-
-            GameDataManager.Instance.Shoes.Name = data.attributes[7].name;
-            GameDataManager.Instance.Shoes.Value = data.attributes[7].value;
-
-            GameDataManager.Instance.Glasses.Name = data.attributes[8].name;
-            GameDataManager.Instance.Glasses.Value = data.attributes[8].name;
+            }
         }
 
         private void HandleGetMetaDataFail(string msg)
@@ -216,10 +251,11 @@ namespace NewLifeZ.API
     [Serializable]
     public class CharacterMetaDataAttribute
     {
+        public string type;
         public string name;
         public string value;
     }
 }
-    
+
 
 
