@@ -23,9 +23,10 @@ namespace NewLifeZ
 
         void ActiveBodyPart()
         {
-            for (int i = 0; i < this.transform.childCount; i++)
-            {
+            for (int i = 0; i < this.transform.childCount; i++) {
+
                 GameObject go = this.transform.GetChild(i).gameObject;
+              
                 if (go.name == GameDataManager.Instance.Eye.Name)
                 {
                     go.SetActive(true);
