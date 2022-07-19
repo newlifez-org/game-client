@@ -37,7 +37,8 @@ namespace NewLifeZ.API
             API_Response<LoginResponse> loginResponse = JsonUtility.FromJson<API_Response<LoginResponse>>(dataString);
             API_Constants.API_TOKEN = loginResponse.data.token;
             API_Constants.UserData = loginResponse.data;
-            PlayerPrefs.SetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME, _UIController.GetUserName());
+            //PlayerPrefs.SetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME, _UIController.GetUserName());
+
             MM_UIController.Instance.SetNameDisplay();
 
             m_UserData = JsonUtility.FromJson<UserData>(dataString);
@@ -187,6 +188,8 @@ namespace NewLifeZ.API
             string loginRequestString = JsonUtility.ToJson(loginRequest);
             Debug.Log(loginRequestString);
             _UIController.Loading(true);
+            Debug.Log("Ten cua tao la: " + username);
+            PlayerPrefs.SetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME, username);
             StartCoroutine(API_Request.PostRequest(API_Endpoints.LOGIN, loginRequestString, null, handleLoginSuccess, handleLoginFailed));
         }
     }

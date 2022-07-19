@@ -36,7 +36,9 @@ namespace NewLifeZ.MainMenu
         }
         void Start()
         {
-            playerName.text = PhotonNetwork.NickName;
+            Debug.Log(PlayerPrefs.GetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME));
+            playerName.text = PlayerPrefs.GetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME);
+            //playerName.text = PhotonNetwork.NickName;
             AddListener();
         }
 
