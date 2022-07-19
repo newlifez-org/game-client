@@ -3,68 +3,65 @@ using Photon.Pun;
 
 namespace NewLifeZ
 {
-    public class PlayerSync : MonoBehaviour
+    public class PlayerSync : MonoBehaviourPun, IPunObservable
     {
-        public class Player_Sync : MonoBehaviourPun, IPunObservable
+        //Dong bo nhan vat
+        //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
+        public MonoBehaviour[] localScripts;
+        //List of the GameObjects that should only be active for the local player (ex. Camera, AudioListener etc.)
+        public GameObject[] localObjects;
+        //Values that will be synced over network
+        Vector3 latestPos;
+        Quaternion latestRot;
+
+        // Use this for initialization
+        void Start()
         {
-            //Dong bo nhan vat
-            //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
-            public MonoBehaviour[] localScripts;
-            //List of the GameObjects that should only be active for the local player (ex. Camera, AudioListener etc.)
-            public GameObject[] localObjects;
-            //Values that will be synced over network
-            Vector3 latestPos;
-            Quaternion latestRot;
 
-            // Use this for initialization
-            void Start()
+            if (photonView.IsMine)
             {
-
-                if (photonView.IsMine)
+                //Player is local
+            }
+            else
+            {
+                //Player is Remote, deactivate the scripts and object that should only be enabled for the local player
+                for (int i = 0; i < localScripts.Length; i++)
                 {
-                    //Player is local
+                    if (localScripts[i] != null)
+                        localScripts[i].enabled = false;
                 }
-                else
+                for (int i = 0; i < localObjects.Length; i++)
                 {
-                    //Player is Remote, deactivate the scripts and object that should only be enabled for the local player
-                    for (int i = 0; i < localScripts.Length; i++)
-                    {
-                        if (localScripts[i] != null)
-                            localScripts[i].enabled = false;
-                    }
-                    for (int i = 0; i < localObjects.Length; i++)
-                    {
-                        if (localObjects[i] != null)
-                            localObjects[i].SetActive(false);
-                    }
+                    if (localObjects[i] != null)
+                        localObjects[i].SetActive(false);
                 }
             }
+        }
 
-            public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
             {
-                if (stream.IsWriting)
-                {
-                    //We own this player: send the others our data
-                    stream.SendNext(transform.position);
-                    stream.SendNext(transform.rotation);
-                }
-                else
-                {
-                    //Network player, receive data
-                    latestPos = (Vector3)stream.ReceiveNext();
-                    latestRot = (Quaternion)stream.ReceiveNext();
-                }
+                //We own this player: send the others our data
+                stream.SendNext(transform.position);
+                stream.SendNext(transform.rotation);
             }
-
-            // Update is called once per frame
-            void Update()
+            else
             {
-                if (!photonView.IsMine)
-                {
-                    //Update remote player (smooth this, this looks good, at the cost of some accuracy)
-                    transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
-                }
+                //Network player, receive data
+                latestPos = (Vector3)stream.ReceiveNext();
+                latestRot = (Quaternion)stream.ReceiveNext();
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (!photonView.IsMine)
+            {
+                //Update remote player (smooth this, this looks good, at the cost of some accuracy)
+                transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
+                transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
             }
         }
     }

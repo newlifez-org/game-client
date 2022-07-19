@@ -3662,6 +3662,7 @@ GameObject:
   - component: {fileID: 1011631518296712669}
   - component: {fileID: 5160995591221071489}
   - component: {fileID: 4039312992159976402}
+  - component: {fileID: 244455982997675077}
   m_Layer: 8
   m_Name: LobbyPlayer
   m_TagString: Player
@@ -3926,6 +3927,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 5160995591221071489}
   - {fileID: 4039312992159976402}
+  - {fileID: 244455982997675077}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3978,6 +3980,29 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &244455982997675077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350039791592174918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e462e6288c15940996f714849b43ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localScripts:
+  - {fileID: 8350039791592174925}
+  - {fileID: 2234106110678245302}
+  - {fileID: 5714808304890063162}
+  - {fileID: 8350039791592174922}
+  - {fileID: 443456471708233514}
+  - {fileID: 1786111180753098518}
+  localObjects:
+  - {fileID: 574423698906567479}
+  - {fileID: 1786111180753098472}
+  - {fileID: 4402083672536091677}
 --- !u!1 &8381992620257916731
 GameObject:
   m_ObjectHideFlags: 0
