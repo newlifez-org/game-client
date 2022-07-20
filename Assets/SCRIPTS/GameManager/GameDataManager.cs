@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GameDataManager : Singleton<GameDataManager>
+public class GameDataManager
 {
     public string Description;
     public string ExternalURL;
     public string AvatarURL;
     public string CharacterName;
-    public EyePart Eye;
-    public BodyPart Body;
-    public EyeBrowPart EyeBrow;
-    public EyeSlashPart EyeSlash;
-    public HairPart Hair;
-    public PantsPart Pants;
-    public ShirtPart Shirt;
-    public ShoesPart Shoes;
-    public GlassPart Glasses;
+    public EyePart Eye = new EyePart();
+    public BodyPart Body = new BodyPart();
+    public EyeBrowPart EyeBrow = new EyeBrowPart();
+    public EyeSlashPart EyeSlash = new EyeSlashPart();
+    public HairPart Hair = new HairPart();
+    public PantsPart Pants = new PantsPart();
+    public ShirtPart Shirt = new ShirtPart();
+    public ShoesPart Shoes = new ShoesPart();
+    public GlassPart Glasses = new GlassPart();
 
     [Serializable]
     public class EyePart

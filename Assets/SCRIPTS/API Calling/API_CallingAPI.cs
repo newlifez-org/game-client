@@ -20,6 +20,7 @@ namespace NewLifeZ.API
         [SerializeField] private Button ConfirmButton;
         [SerializeField] private UserData m_UserData = new UserData();
         [SerializeField] private WalletData m_WalletData = new WalletData();
+        public GameDataManager gameDataManagerLocalPlayer = new GameDataManager();
 
         private void Awake()
         {
@@ -104,66 +105,66 @@ namespace NewLifeZ.API
             Debug.Log("data:" + API_Static.m_CharacterMetaData.Count);
             CharacterMetaData data = API_Static.m_CharacterMetaData[index];
             Debug.Log("attributes:" + data.attributes.Count);
-            GameDataManager.Instance.Description = data.description;
-            GameDataManager.Instance.ExternalURL = data.external_url;
-            GameDataManager.Instance.AvatarURL = data.image;
-            GameDataManager.Instance.CharacterName = data.name;
+            gameDataManagerLocalPlayer.Description = data.description;
+            gameDataManagerLocalPlayer.ExternalURL = data.external_url;
+            gameDataManagerLocalPlayer.AvatarURL = data.image;
+            gameDataManagerLocalPlayer.CharacterName = data.name;
 
             for (int i = 0; i < data.attributes.Count; i++)
             {
                 Debug.Log("part:" + data.attributes[i].type+":"+ data.attributes[i].name);
                 if (data.attributes[i].type == "Eye")
                 {
-                    GameDataManager.Instance.Eye.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Eye.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Eye.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Eye.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Body")
                 {
-                    GameDataManager.Instance.Body.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Body.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Body.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Body.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "EyeBrow")
                 {
-                    GameDataManager.Instance.EyeBrow.Name = data.attributes[i].name;
-                    GameDataManager.Instance.EyeBrow.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.EyeBrow.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.EyeBrow.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Eyelash")
                 {
-                    GameDataManager.Instance.EyeSlash.Name = data.attributes[i].name;
-                    GameDataManager.Instance.EyeSlash.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.EyeSlash.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.EyeSlash.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Hair")
                 {
-                    GameDataManager.Instance.Hair.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Hair.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Hair.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Hair.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Pants")
                 {
-                    GameDataManager.Instance.Pants.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Pants.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Pants.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Pants.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Shirt")
                 {
-                    GameDataManager.Instance.Shirt.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Shirt.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Shirt.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Shirt.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Shoes")
                 {
-                    GameDataManager.Instance.Shoes.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Shoes.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Shoes.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Shoes.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
                 else if (data.attributes[i].type == "Glass")
                 {
-                    GameDataManager.Instance.Glasses.Name = data.attributes[i].name;
-                    GameDataManager.Instance.Glasses.Value = data.attributes[i].value;
+                    gameDataManagerLocalPlayer.Glasses.Name = data.attributes[i].name;
+                    gameDataManagerLocalPlayer.Glasses.Value = data.attributes[i].value;
                     Debug.Log("Eye:" + data.attributes[i].name);
                 }
 

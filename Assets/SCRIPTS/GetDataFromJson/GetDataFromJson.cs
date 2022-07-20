@@ -2,86 +2,101 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NewLifeZ.API;
+using Photon.Pun;
 
 namespace NewLifeZ
 {
     public class GetDataFromJson : MonoBehaviour
     {
         [SerializeField] private BodyPart_Data bodyPart_Data;
+        PhotonView PV;
+        [SerializeField] private GameObject model;
         // Start is called before the first frame update
-        void Start()
-        {
-            API_CallingAPI.Instance.GetCharacterData(0);
-            ActiveBodyPart();
 
+        public void Start()
+        {
+            Debug.Log("Get data from json");
+            PV = GetComponent<PhotonView>();
+            Debug.Log("Mine:" + PV.IsMine);
+            if(PV == null)
+            {
+                Debug.Log("BI NULL");
+            }
+            if (PV.IsMine)
+            {
+                API_CallingAPI.Instance.GetCharacterData(0);
+                ActiveBodyPart(API_CallingAPI.Instance.gameDataManagerLocalPlayer);
+                PV.RPC("sendSpawnModelToOtherPlayer", RpcTarget.OthersBuffered, JsonUtility.ToJson(API_CallingAPI.Instance.gameDataManagerLocalPlayer));
+            }
+            else
+            {
+                Debug.Log("Client:" + GetComponent<LobbyPunRPC>().gameDataManager == null ?"null":"yess");
+                ActiveBodyPart(GetComponent<LobbyPunRPC>().gameDataManager);
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        void ActiveBodyPart(GameDataManager modelData)
         {
-        }
+            for (int i = 0; i < model.transform.childCount; i++)
+            {
 
-        void ActiveBodyPart()
-        {
-            for (int i = 0; i < this.transform.childCount; i++) {
-
-                GameObject go = this.transform.GetChild(i).gameObject;
-                if (go.name == GameDataManager.Instance.Eye.Name)
+                GameObject go = model.transform.GetChild(i).gameObject;
+                if (go.name == modelData.Eye.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Eye.Value, bodyPart_Data.EYELIST());
+                    setMaterialForBodyPart(go, modelData.Eye.Value, bodyPart_Data.EYELIST());
                 }
 
-                if (go.name == GameDataManager.Instance.EyeBrow.Name)
+                if (go.name == modelData.EyeBrow.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.EyeBrow.Value, bodyPart_Data.EYEBROWLIST());
+                    setMaterialForBodyPart(go, modelData.EyeBrow.Value, bodyPart_Data.EYEBROWLIST());
                 }
 
-                if (go.name == GameDataManager.Instance.EyeSlash.Name)
+                if (go.name == modelData.EyeSlash.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.EyeSlash.Value, bodyPart_Data.EYELASHLIST());
+                    setMaterialForBodyPart(go, modelData.EyeSlash.Value, bodyPart_Data.EYELASHLIST());
                 }
 
-                if (go.name == GameDataManager.Instance.Hair.Name)
+                if (go.name == modelData.Hair.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Hair.Value, bodyPart_Data.HAIRLIST());
+                    setMaterialForBodyPart(go, modelData.Hair.Value, bodyPart_Data.HAIRLIST());
                 }
 
-                if (go.name == GameDataManager.Instance.Body.Name)
+                if (go.name == modelData.Body.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Body.Value, bodyPart_Data.BODYLIST());
+                    setMaterialForBodyPart(go, modelData.Body.Value, bodyPart_Data.BODYLIST());
                 }
 
-                if (go.name == GameDataManager.Instance.Shirt.Name)
+                if (go.name == modelData.Shirt.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Shirt.Value, bodyPart_Data.SHIRTLIST());
+                    setMaterialForBodyPart(go, modelData.Shirt.Value, bodyPart_Data.SHIRTLIST());
                 }
-                if (go.name == GameDataManager.Instance.Shoes.Name)
+                if (go.name == modelData.Shoes.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Shoes.Value, bodyPart_Data.SHOESLIST());
+                    setMaterialForBodyPart(go, modelData.Shoes.Value, bodyPart_Data.SHOESLIST());
                 }
-                if (go.name == GameDataManager.Instance.Pants.Name)
+                if (go.name == modelData.Pants.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Pants.Value, bodyPart_Data.PANTLIST());
+                    setMaterialForBodyPart(go, modelData.Pants.Value, bodyPart_Data.PANTLIST());
                 }
-                if (go.name == GameDataManager.Instance.Glasses.Name)
+                if (go.name == modelData.Glasses.Name)
                 {
                     go.SetActive(true);
-                    setMaterialForBodyPart(go, GameDataManager.Instance.Glasses.Value, bodyPart_Data.GLASSLIST());
+                    setMaterialForBodyPart(go, modelData.Glasses.Value, bodyPart_Data.GLASSLIST());
                 }
             }
-            
+
         }
         private void setMaterialForBodyPart(GameObject part, string materialName, Material[] materials)
         {
-            foreach(var item in materials)
+            foreach (var item in materials)
             {
                 if (item.name == materialName)
                 {
