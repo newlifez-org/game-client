@@ -13,7 +13,7 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
 
     [Header("Settings")]
     public float joystickRange = 50f;
-    public float magnitudeMultiplier = 1f;
+    public float magnitudeMultiplier = 0.3f;
     public bool invertXOutputValue;
     public bool invertYOutputValue;
 
