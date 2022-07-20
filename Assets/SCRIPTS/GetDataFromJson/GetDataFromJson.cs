@@ -24,7 +24,6 @@ namespace NewLifeZ
             }
             if (PV.IsMine)
             {
-                API_CallingAPI.Instance.GetCharacterData(0);
                 ActiveBodyPart(API_CallingAPI.Instance.gameDataManagerLocalPlayer);
                 PV.RPC("sendSpawnModelToOtherPlayer", RpcTarget.OthersBuffered, JsonUtility.ToJson(API_CallingAPI.Instance.gameDataManagerLocalPlayer));
             }
