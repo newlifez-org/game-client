@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using NewLifeZ;
 
 public class LoginScreenUI : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class LoginScreenUI : MonoBehaviour
         if (_vivoxVoiceManager.LoginState == VivoxUnity.LoginState.LoggedIn)
         {
             OnUserLoggedIn();
-            DisplayNameInput.text = _vivoxVoiceManager.LoginSession.Key.DisplayName;
+            //DisplayNameInput.text = _vivoxVoiceManager.LoginSession.Key.DisplayName;
+            DisplayNameInput.text = PlayerPrefs.GetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME);
         }
         else
         {
@@ -44,6 +46,11 @@ public class LoginScreenUI : MonoBehaviour
 
             DisplayNameInput.text = Environment.MachineName.Substring(0, Math.Min(defaultMaxStringLength, Environment.MachineName.Length));
         }
+    }
+
+    private void Start()
+    {
+        DisplayNameInput.text = PlayerPrefs.GetString(GameConstant.PlayerPref.CHARACTER_LAST_NAME);
     }
 
     private void OnDestroy()
