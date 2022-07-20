@@ -1,0 +1,4 @@
+Server: https://mt1s.www.vivox.com/api2
+Domain: mt1s.vivox.com
+Token Issuer: akagam5095-ji87-dev
+Token Key: maze601
