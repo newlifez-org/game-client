@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,37 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaf292d9732e60439457a56be2613c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Description: 
-  ExternalURL: 
-  AvatarURL: 
-  CharacterName: 
-  Eye:
-    Name: 
-    Value: 
-  Body:
-    Name: 
-    Value: 
-  EyeBrow:
-    Name: 
-    Value: 
-  EyeSlash:
-    Name: 
-    Value: 
-  Hair:
-    Name: 
-    Value: 
-  Pants:
-    Name: 
-    Value: 
-  Shirt:
-    Name: 
-    Value: 
-  Shoes:
-    Name: 
-    Value: 
-  Glasses:
-    Name: 
-    Value: 
 --- !u!1 &60154258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1418236364
 Transform:
   m_ObjectHideFlags: 0

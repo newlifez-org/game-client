@@ -18,7 +18,12 @@ namespace NewLifeZ.MainMenu
         {
             for(int i = 0; i < API_Static.m_CharacterMetaData.Count; i++)
             {
-                Instantiate(ModelPrefab, transform);
+                API_CallingAPI.Instance.GetCharacterData(i);
+
+                GameObject showChar = Instantiate(ModelPrefab, transform);           
+
+                showChar.GetComponent<MM_Character>().ActiveBodyPart(API_CallingAPI.Instance.gameDataManagerLocalPlayer);
+
             }
         }
     }

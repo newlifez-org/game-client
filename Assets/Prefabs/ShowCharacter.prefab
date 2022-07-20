@@ -6326,7 +6326,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6884078299440813072}
   - component: {fileID: 4741137080437664290}
-  - component: {fileID: 1976218062508573185}
   m_Layer: 0
   m_Name: Eye_01
   m_TagString: Untagged
@@ -6453,20 +6452,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00025336747, y: 0.0018087607, z: 0.011008307}
     m_Extent: {x: 0.0024719143, y: 0.0008056292, z: 0.0011015362}
   m_DirtyAABB: 0
---- !u!114 &1976218062508573185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844150262810726029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93f5777908b1314da132c7fc65bf902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodyPart_Data: {fileID: 0}
-  model: {fileID: 0}
 --- !u!1 &5986861081973882894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8204,6 +8189,7 @@ GameObject:
   - component: {fileID: 8804784537812067028}
   - component: {fileID: 3229305472261437614}
   - component: {fileID: 8177182667344951396}
+  - component: {fileID: 6867480843511471897}
   m_Layer: 8
   m_Name: ShowCharacter
   m_TagString: Player
@@ -8265,6 +8251,20 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.84, z: 0}
+--- !u!114 &6867480843511471897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177182667344951406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab0aa509edf44b588fa904276198d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 425720766950513237}
+  bodyPart_Data: {fileID: 11400000, guid: 76379cc8c0a944a41afbe970e719ca3a, type: 2}
 --- !u!1 &8282763870522248242
 GameObject:
   m_ObjectHideFlags: 0
