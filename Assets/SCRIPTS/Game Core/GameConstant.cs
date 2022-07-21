@@ -17,6 +17,7 @@ namespace NewLifeZ
         {
             public const string MAIN_ROOM = "NewLifeZ_Room";
             public const string GOLD_MINE = "GoldMine_Room";
+            public const string FOREST_ROOM = "Forest_Room";
         }
 
         public static class PlayerPref

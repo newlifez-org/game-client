@@ -80,7 +80,7 @@ namespace NewLifeZ.GoldMine
         }
         public override void OnJoinedLobby()
         {
-            CreatePhotonRoom("Room " + GameConstant.PhotonRoom.MAIN_ROOM);
+            CreatePhotonRoom("Room " + GameConstant.PhotonRoom.GOLD_MINE);
         }
         public override void OnCreatedRoom()
         {
