@@ -11,6 +11,7 @@ namespace NewLifeZ
             public const string MAIN_GAME = "MainGame";
             public const string MAIN_MENU = "MainMenu";
             public const string GOLDMINE = "GoldMine";
+            public const string FOREST = "Forest";
         }
 
         public static class PhotonRoom

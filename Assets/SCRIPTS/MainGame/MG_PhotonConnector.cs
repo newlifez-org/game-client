@@ -19,6 +19,7 @@ namespace NewLifeZ.MainGame
         [SerializeField] private GameObject SecondCamera;
 
         private bool IsGoingTo_GoldMine = false;
+        private bool IsGoingTo_Forest = false;
 
         #region Unity Methods
         private void Awake()
@@ -102,6 +103,11 @@ namespace NewLifeZ.MainGame
                 IsGoingTo_GoldMine = false;
                 PhotonNetwork.LoadLevel(GameConstant.SceneName.GOLDMINE);
             }
+            if (IsGoingTo_Forest)
+            {
+                IsGoingTo_Forest = false;
+                PhotonNetwork.LoadLevel(GameConstant.SceneName.FOREST);
+            }
         }
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
@@ -127,6 +133,13 @@ namespace NewLifeZ.MainGame
             PhotonNetwork.LeaveRoom();
             await UniTask.Yield();
             IsGoingTo_GoldMine = true;
+        }
+
+        public async void MoveTo_Forest()
+        {
+            PhotonNetwork.LeaveRoom();
+            await UniTask.Yield();
+            IsGoingTo_Forest = true;
         }
         #endregion
     }
